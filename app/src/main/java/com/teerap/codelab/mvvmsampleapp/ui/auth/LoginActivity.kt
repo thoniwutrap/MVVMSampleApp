@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.teerap.codelab.mvvmsampleapp.R
+import com.teerap.codelab.mvvmsampleapp.data.db.entities.User
 import com.teerap.codelab.mvvmsampleapp.databinding.ActivityLoginBinding
 import com.teerap.codelab.mvvmsampleapp.utils.hide
 import com.teerap.codelab.mvvmsampleapp.utils.show
@@ -32,11 +33,9 @@ class LoginActivity : AppCompatActivity(),AuthListener {
         progress_bar.show()
     }
 
-    override fun onSuccess(loginResponse: LiveData<String>) {
-        loginResponse.observe(this, Observer {
-            progress_bar.hide()
-            toast(it)
-        })
+    override fun onSuccess(user: User) {
+        progress_bar.hide()
+        toast("${user.name} is Login in")
     }
 
     override fun onFailure(msg: String) {
