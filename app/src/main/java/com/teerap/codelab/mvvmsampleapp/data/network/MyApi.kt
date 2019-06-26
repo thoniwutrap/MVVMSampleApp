@@ -19,6 +19,7 @@ interface MyApi {
         @Field("password") password : String
     ) : Response<AuthResponse>
 
+
     companion object {
         operator fun invoke() : MyApi{
             return  Retrofit.Builder()

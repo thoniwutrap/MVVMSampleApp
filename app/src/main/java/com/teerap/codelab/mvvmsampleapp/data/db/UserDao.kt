@@ -13,8 +13,8 @@ import com.teerap.codelab.mvvmsampleapp.data.db.entities.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(user : User) : Long
+    suspend fun upsert(user : User) : Long
 
     @Query("SELECT * FROM user WHERE uid = $CURRENT_USER_ID")
-    fun getUser() : LiveData<User>
+     fun getUser() : LiveData<User>
 }
