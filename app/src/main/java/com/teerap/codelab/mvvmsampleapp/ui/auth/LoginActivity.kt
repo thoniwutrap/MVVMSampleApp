@@ -15,6 +15,7 @@ import com.teerap.codelab.mvvmsampleapp.R
 import com.teerap.codelab.mvvmsampleapp.data.db.AppDatabase
 import com.teerap.codelab.mvvmsampleapp.data.db.entities.User
 import com.teerap.codelab.mvvmsampleapp.data.network.MyApi
+import com.teerap.codelab.mvvmsampleapp.data.network.NetworkConnectionInterceptor
 import com.teerap.codelab.mvvmsampleapp.data.repositories.UserRepository
 import com.teerap.codelab.mvvmsampleapp.databinding.ActivityLoginBinding
 import com.teerap.codelab.mvvmsampleapp.ui.home.HomeActivity
@@ -29,7 +30,9 @@ class LoginActivity : AppCompatActivity(),AuthListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val api = MyApi()
+
+        val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
+        val api = MyApi(networkConnectionInterceptor)
         val db = AppDatabase(this)
         val repository = UserRepository(api,db)
         val factory =  AuthViewModelFactory(repository)

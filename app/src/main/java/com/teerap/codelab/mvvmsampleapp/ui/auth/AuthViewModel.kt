@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.teerap.codelab.mvvmsampleapp.data.repositories.UserRepository
 import com.teerap.codelab.mvvmsampleapp.utils.ApiException
 import com.teerap.codelab.mvvmsampleapp.utils.Coroutines
+import com.teerap.codelab.mvvmsampleapp.utils.NoInternetException
 import kotlinx.coroutines.yield
 
 class AuthViewModel(private val repository: UserRepository) : ViewModel() {
@@ -34,6 +35,8 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
                 authListener?.onFailure(authResponse.message!!)
 
             }catch (ex : ApiException){
+                authListener?.onFailure(ex.message!!)
+            }catch (ex : NoInternetException){
                 authListener?.onFailure(ex.message!!)
             }
 
