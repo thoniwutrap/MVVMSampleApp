@@ -34,7 +34,10 @@ class LoginActivity : AppCompatActivity(),AuthListener {
         val networkConnectionInterceptor = NetworkConnectionInterceptor(this)
         val api = MyApi(networkConnectionInterceptor)
         val db = AppDatabase(this)
+
         val repository = UserRepository(api,db)
+
+
         val factory =  AuthViewModelFactory(repository)
         val binding : ActivityLoginBinding = DataBindingUtil.setContentView(this,R.layout.activity_login)
         val viewModel = ViewModelProviders.of(this,factory).get(AuthViewModel::class.java)
@@ -50,8 +53,6 @@ class LoginActivity : AppCompatActivity(),AuthListener {
                 }
             }
         })
-
-
     }
 
     override fun onStarted() {

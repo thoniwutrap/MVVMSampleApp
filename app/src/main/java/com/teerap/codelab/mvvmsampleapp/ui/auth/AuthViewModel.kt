@@ -33,7 +33,6 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
                     return@main
                 }
                 authListener?.onFailure(authResponse.message!!)
-
             }catch (ex : ApiException){
                 authListener?.onFailure(ex.message!!)
             }catch (ex : NoInternetException){

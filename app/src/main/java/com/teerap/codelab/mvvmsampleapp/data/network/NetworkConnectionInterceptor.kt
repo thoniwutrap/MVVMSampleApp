@@ -16,7 +16,7 @@ class NetworkConnectionInterceptor(context : Context) : Interceptor {
             throw NoInternetException("Internet Connection is offline")
         return chain.proceed(chain.request())
     }
-
+    
     private fun isIntetnetAvailable() : Boolean{
         val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.activeNetworkInfo.also {

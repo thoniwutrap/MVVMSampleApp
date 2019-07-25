@@ -24,11 +24,10 @@ interface MyApi {
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor) : MyApi{
 
+
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(networkConnectionInterceptor)
                 .build()
-
-
 
             return  Retrofit.Builder()
                 .client(okHttpClient)

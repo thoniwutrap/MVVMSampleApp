@@ -103,6 +103,7 @@
                         android:layout_height="wrap_content"/>
 
                 <Button
+                        android:background="@color/colorPrimaryDark"
                         android:onClick="@{viewmodel::onLoginButtonClick}"
                         android:layout_gravity="center_horizontal"
                         android:textAllCaps="false"
